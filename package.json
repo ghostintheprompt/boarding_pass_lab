@@ -1,0 +1,12 @@
+{
+  "name": "boarding_pass_lab",
+  "version": "1.0.0",
+  "description": "Vulnerable/fixed server pairs modeling real boarding-pass and check-in-system vulnerability classes",
+  "scripts": {
+    "test": "node cases/01-pnr-lookup-idor/test.js && node cases/02-unsigned-barcode-verification/test.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "license": "MIT"
+}

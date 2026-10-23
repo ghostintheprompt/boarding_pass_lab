@@ -8,7 +8,11 @@ function get(server, path) {
     const instance = server.listen(0, () => {
       const { port } = instance.address();
       http
-        .get(`http://127.0.0.1:${port}${path}`, (res) => {
+        // agent:false disables keep-alive so the client socket closes
+        // immediately and the test process exits promptly instead of
+        // waiting on an idle keep-alive socket (Node's default agent has
+        // keepAlive=true, which can otherwise stall exit).
+        .get(`http://127.0.0.1:${port}${path}`, { agent: false }, (res) => {
           let body = "";
           res.on("data", (chunk) => (body += chunk));
           res.on("end", () => {

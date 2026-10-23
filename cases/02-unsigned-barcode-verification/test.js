@@ -15,6 +15,10 @@ function request(server, path, body) {
           port,
           path,
           method: "POST",
+          // agent:false disables keep-alive so the client socket closes
+          // immediately and the test process exits promptly (Node's default
+          // agent has keepAlive=true, which can otherwise stall exit).
+          agent: false,
           headers: { "Content-Type": "application/json", "Content-Length": Buffer.byteLength(data) },
         },
         (res) => {
